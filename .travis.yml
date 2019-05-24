@@ -4,6 +4,10 @@ node_js:
 script:
   - npm run test
   - npm run build
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+$/
 deploy:
   provider: npm
   email: "$NPM_EMAIL"

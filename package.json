@@ -1,5 +1,5 @@
 {
-  "name": "@decf/vcollect",
+  "name": "collect-video",
   "version": "0.1.8",
   "description": "Collecting video",
   "main": "./lib/index.js",

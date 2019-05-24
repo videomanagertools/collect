@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.com/videomanagertools/collect.svg?branch=master)](https://travis-ci.com/videomanagertools/collect)
+[![Build Status](https://travis-ci.org/videomanagertools/collect.svg?branch=master)](https://travis-ci.org/videomanagertools/collect)

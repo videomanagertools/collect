@@ -1,6 +1,6 @@
 {
   "name": "vcollect",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Collecting video",
   "main": "./lib/index.js",
   "bin": {

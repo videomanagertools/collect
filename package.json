@@ -1,6 +1,6 @@
 {
   "name": "@decf/vcollect",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Collecting video",
   "main": "./lib/index.js",
   "bin": {

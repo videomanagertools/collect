@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import colloct from './colloct';
 
 // const argv = process.argv.slice(2);

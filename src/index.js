@@ -1,10 +1,6 @@
-const defaultAwesomeFunction = (name) => {
-  const returnStr = `I am the Default Awesome Function, fellow comrade! - ${name}`;
-  return returnStr;
-};
+import colloct from './colloct';
 
-const awesomeFunction = () => 'I am just an Awesome Function';
+const argv = process.argv.slice(2);
+const cwd = process.cwd();
 
-export default defaultAwesomeFunction;
-
-export { awesomeFunction };
+colloct(argv || cwd);

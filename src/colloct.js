@@ -3,14 +3,17 @@ import path from 'path';
 
 import getSize from 'get-folder-size';
 import rimraf from 'rimraf';
+import chalk from 'chalk';
+
+const { log } = console;
 
 const DEFREG = /(.mp4|.rmvb|.avi|.wmv)$/;
 const REPLACEREG = /(_|-)(HD|hd|full|all|720P|720p|1080P|1080p)/g;
 
 let root = '';
-function readDir(path) {
+function readDir(dir) {
   return new Promise((resolve, reject) => {
-    fs.readdir(path, (err, files) => {
+    fs.readdir(dir, (err, files) => {
       if (err) {
         reject(err);
       } else {
@@ -25,19 +28,20 @@ function collectVideo(targetPath, regex = DEFREG, isRecursive = false) {
   const filePath = path.resolve(targetPath);
   let rmdir = false;
   readDir(filePath).then((files) => {
-    files.forEach((file, index) => {
+    files.forEach((file) => {
       const childPath = path.join(filePath, file);
       const stats = fs.statSync(childPath);
       if (stats.isDirectory()) {
-        scanMedia(childPath, regex, true);
+        collectVideo(childPath, regex, true);
       }
       if (stats.isFile()) {
         if (regex.test(file)) {
           const name = file.replace(REPLACEREG, '');
-          console.log(name);
-          try {
-            fs.mkdirSync(path.join(root, 'Collection'));
-          } catch (err) {}
+          log(chalk.blue(name));
+          const collectDirPath = path.join(root, 'Collection');
+          if (!fs.existsSync(collectDirPath)) {
+            fs.mkdirSync(collectDirPath);
+          }
           fs.renameSync(childPath, path.join(root, 'Collection', name));
           if (filePath !== root && !/Collection$/.test(filePath)) {
             //   非根目录下删除文件夹
@@ -49,16 +53,16 @@ function collectVideo(targetPath, regex = DEFREG, isRecursive = false) {
     if (rmdir) {
       fs.rmdir(filePath, (err) => {
         if (err) {
-          getSize(filePath, (err, size) => {
+          getSize(filePath, (error, size) => {
             const M = (size / 1024 / 1024).toFixed(2);
             if (M < 10) {
-              rimraf(filePath, (err) => {
-                console.log('force del dir');
+              rimraf(filePath, () => {
+                log(chalk.green('force del dir'));
               });
             }
           });
         } else {
-          console.log('del dir');
+          log(chalk.green('del dir'));
         }
       });
     }

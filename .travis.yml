@@ -16,3 +16,6 @@ deploy:
   on:
     tags: true
   tag: latest
+
+notifications:
+  email: false

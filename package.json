@@ -1,5 +1,5 @@
 {
-  "name": "collect-video",
+  "name": "@vdts/collect-video",
   "version": "0.3.0",
   "description": "Collecting video",
   "main": "./lib/index.js",
@@ -25,12 +25,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:videomanagertools/collect.git"
+    "url": "https://github.com/videomanagertools/collect"
   },
   "keywords": [
     "npm",
     "node",
-    "javascript"
+    "javascript",
+    "video",
+    "tool",
+    "tools"
   ],
   "author": "Dec-F",
   "license": "MIT",

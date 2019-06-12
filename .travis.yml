@@ -15,3 +15,4 @@ deploy:
 
 notifications:
   email: false
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=3252a8769da455945255ff5728e4afbcebd1f10eab4a520a2f78de7102d0defa

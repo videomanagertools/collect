@@ -43,7 +43,7 @@ const rebuild = (dir, files) => Promise.all(
           resolve(e);
         });
     });
-    const p2 = () => (file === `${p}/${path.basename(file)}` ? Promise.resolve() : move(file, `${p}/${path.basename(file)}`));
+    const p2 = () => (file === `${path.join(p, path.basename(file))}` ? Promise.resolve() : move(file, `${p}/${path.basename(file)}`));
     return Promise.all([mp(), p2()]);
   }),
 ).then(() => dir);

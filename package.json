@@ -2,7 +2,7 @@
   "name": "@vdts/collect-video",
   "version": "0.4.2",
   "description": "Collecting video",
-  "main": "./lib/index.js",
+  "main": "./lib/method.js",
   "bin": {
     "cv": "./lib/index.js"
   },
@@ -14,9 +14,9 @@
     "test:watch": "npm test -- --watch",
     "test:examples": "node examples/",
     "cover": "nyc --check-coverage npm run test:only",
-    "lint": "eslint src test",
+    "lint": "eslint src",
     "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
-    "prepublish": "npm run clean && npm run lint && npm run test && npm run build",
+    "prepublish": "npm run clean && npm run lint && npm run build",
     "postversion": "git push --follow-tags"
   },
   "publishConfig": {
@@ -44,6 +44,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-minify": "^0.5.0",
@@ -59,6 +60,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
+    "fs-extra": "^8.1.0",
     "get-folder-size": "^2.0.1",
     "rimraf": "^2.6.3"
   }

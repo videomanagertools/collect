@@ -1,6 +1,6 @@
 {
   "name": "@vdts/collect-video",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Collecting video",
   "main": "./lib/method.js",
   "bin": {

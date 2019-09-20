@@ -25,16 +25,16 @@ function collect(filepath) {
       return walkRes.filter(v => v);
     }
     rimraf(walkpath, () => {
-      console.log('rm==>', walkpath);
+      log('rm==>', walkpath);
     });
     return null;
   };
-  return walk(filepath).then(res => _flat(res, Infinity));
+  return walk(filepath).then(res => flat(res, Infinity));
 }
 const rebuild = (dir, files) => Promise.all(
   files.map((file) => {
     const p = `${dir}/${path.basename(file, path.extname(file))}`;
-    const mp = () => new Promise((resolve, reject) => {
+    const mp = () => new Promise((resolve) => {
       mkdir(p)
         .then((r) => {
           resolve(r);
@@ -45,12 +45,9 @@ const rebuild = (dir, files) => Promise.all(
     });
     return Promise.all([mp(), move(file, `${p}/${path.basename(file)}`)]);
   }),
-).then(res => dir);
-function _flat(arr, depth) {
-  return arr.reduce(
-    (flat, toFlatten) => flat.concat(Array.isArray(toFlatten) && depth > 1 ? _flat(toFlatten, depth - 1) : toFlatten),
-    [],
-  );
+).then(() => dir);
+function flat(arr, depth) {
+  return arr.reduce((acc, toFlatten) => acc.concat(Array.isArray(toFlatten) && depth > 1 ? flat(toFlatten, depth - 1) : toFlatten), []);
 }
 
 export { collect, rebuild };

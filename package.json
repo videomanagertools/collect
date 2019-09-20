@@ -8,7 +8,7 @@
   },
   "scripts": {
     "clean": "rimraf lib",
-    "test": "npm run lint && npm run cover",
+    "test": "",
     "test:prod": "cross-env BABEL_ENV=production npm run test",
     "test:only": "mocha --require babel-core/register --require babel-polyfill --recursive",
     "test:watch": "npm test -- --watch",

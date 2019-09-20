@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import colloct from './colloct';
+import CRD from './method';
 
 // const argv = process.argv.slice(2);
 const cwd = process.cwd();
 
-colloct(cwd);
+CRD(cwd);

@@ -1,5 +1,5 @@
 import c from './src/method';
 
-c('./test').then((res) => {
+c('./dtest').then((res) => {
   console.log(res);
 });

@@ -8,7 +8,14 @@ const { log } = console;
 
 const DEFREG = /(.mp4|.rmvb|.avi|.wmv)$/;
 
-function collect(filepath) {
+function collect(
+  filepath,
+  opt = {
+    clear: true,
+    whitelist: ['.actor'],
+  },
+) {
+  const { clear, whitelist } = opt;
   const walk = async (walkpath) => {
     const walkRes = await readdir(walkpath).then(files => Promise.all(
       files.map((file) => {
@@ -24,9 +31,11 @@ function collect(filepath) {
     if (walkRes.some(v => !!v)) {
       return walkRes.filter(v => v);
     }
-    rimraf(walkpath, () => {
-      log('rm==>', walkpath);
-    });
+    if (clear && !whitelist.some(v => walkpath.indexOf(v) !== -1)) {
+      rimraf(walkpath, () => {
+        log('rm==>', walkpath);
+      });
+    }
     return null;
   };
   return walk(filepath).then(res => flat(res, Infinity));

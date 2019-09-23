@@ -55,7 +55,7 @@ const rebuild = (dir, files) => Promise.all(
     const p2 = () => (file === `${path.join(p, path.basename(file))}` ? Promise.resolve() : move(file, `${p}/${path.basename(file)}`));
 
     return Promise.all([mp(), p2()]).catch((e) => {
-      console.log('======', file === `${path.join(p, path.basename(file))}`, file, `${path.join(p, path.basename(file))}`);
+      log('======', file === `${path.join(p, path.basename(file))}`, file, `${path.join(p, path.basename(file))}`, e);
     });
   }),
 ).then(() => dir);
